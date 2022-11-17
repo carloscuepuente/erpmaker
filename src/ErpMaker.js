@@ -114,7 +114,7 @@ export default function ErpMaker() {
                     type: "blob",
                     mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
                 });
-                saveAs(out, `Departure-Airport-Data-Sheet.docx`)
+                saveAs(out, `Departure-Airport-Data-Sheet ${erpInfo.origin}-${erpInfo.destiny} ${erpInfo.flightNumber}.docx`)
             })
     }
 
