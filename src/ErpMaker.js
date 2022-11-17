@@ -4,6 +4,8 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import PrintIcon from '@mui/icons-material/Print';
 import { Button } from '@mui/material';
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
 // import TextField from '@mui/material/TextField';
 // import FormControlLabel from '@mui/material/FormControlLabel';
 // import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
@@ -118,29 +120,32 @@ export default function ErpMaker() {
 
     return (
         <React.Fragment>
-            <Typography variant="h6" gutterBottom>
-                ERP Maker
-            </Typography>
+            <Container component="main" maxWidth="xl" sx={{ mb: 4 }}>
+                <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+                    <Typography variant="h6" gutterBottom={true}>
+                        ERP Maker
+                    </Typography>
 
-            <Grid container spacing={3}>
+                    <Grid container spacing={3}>
 
-                <DateSelect addDates={addDates} />
+                        <DateSelect addDates={addDates} />
 
-                <NamesSelect addNames={addNames} />
+                        <NamesSelect addNames={addNames} />
 
-                <FlightInfo addFlightInfo={addFlightInfo} />
+                        <FlightInfo addFlightInfo={addFlightInfo} />
 
-                <TimesAndRoutes
-                    dateFlight={erpInfo.dateFlight}
-                    addTimesAndRoutes={addTimesAndRoutes} />
+                        <TimesAndRoutes
+                            dateFlight={erpInfo.dateFlight}
+                            addTimesAndRoutes={addTimesAndRoutes} />
 
-                <Grid item xs={12}>
-                    <Button variant="contained" onClick={saveOnWord} endIcon={<PrintIcon />}>
-                        Descargar Word
-                    </Button>
-                </Grid>
-            </Grid>
-
+                        <Grid item xs={12}>
+                            <Button variant="contained" onClick={saveOnWord} endIcon={<PrintIcon />}>
+                                Descargar Word
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </Paper>
+            </Container>
         </React.Fragment>
     )
 }
