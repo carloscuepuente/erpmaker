@@ -15,7 +15,7 @@ import Docxtemplater from 'docxtemplater';
 import PizZip from 'pizzip';
 import PizZipUtils from 'pizzip/utils/index.js';
 import { saveAs } from "file-saver";
-
+import moment from 'moment';
 
 import DateSelect from './DateSelect';
 import NamesSelect from './NamesSelect';
@@ -28,6 +28,12 @@ function loadFile(url, callback) {
     PizZipUtils.getBinaryContent(url, callback)
 }
 
+function parseNowInUTC() {
+    const nowUTC = moment.utc();
+    const nowFormated = nowUTC.format("HH:mm")
+    console.log(nowFormated)
+    return nowFormated
+}
 
 export default function ErpMaker() {
     const [erpInfo, setErpInfo] = useState({
@@ -53,6 +59,8 @@ export default function ErpMaker() {
     const addTimesAndRoutes = (origin, destiny, STD, STA) => {
         setErpInfo({ ...erpInfo, origin, destiny, STD, STA })
     }
+
+
     const saveOnWord = () => {
         loadFile(documento,
             function (error, content) {
@@ -76,7 +84,9 @@ export default function ErpMaker() {
                     flightNumber: erpInfo.flightNumber,
                     registration: erpInfo.registration,
                     crew: erpInfo.crew,
-                    TOB: erpInfo.TOB
+                    TOB: erpInfo.TOB,
+                    nowUTC: parseNowInUTC(),
+
                 });
                 try {
                     doc.render();
